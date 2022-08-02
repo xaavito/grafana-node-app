@@ -62,6 +62,24 @@ app.get('/variable', async (req, res) => {
   res.end('Hello world but super delayed');
 });
 
+app.get('/random', (req, res) => {
+  // Start the HTTP request timer, saving a reference to the returned method
+  const end = httpRequestTimer.startTimer();
+  // Save reference to the path so we can record it when ending the timer
+  const route = req.route.path;
+
+  if (Math.floor(Math.random() * (2) + 1) === 1) {
+    res.status(400);
+  }
+  else {
+    res.status(200);
+  }
+  // End timer and add labels
+  end({ route, code: res.statusCode, method: req.method });
+
+  res.send('Super unstable method');
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
