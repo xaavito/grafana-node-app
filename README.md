@@ -22,5 +22,7 @@ docker build . -t javiermartingonzalez/simple-node-app:v1.0.0 -t javiermartingon
 
 * /variable
 
+* /random
+
 * /metrics
 
